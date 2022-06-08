@@ -3,11 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define ff first
-#define ss second
 typedef long long ll;
-typedef vector<int> vi;
-typedef pair<int,int> pii;
 const int MAX = 110;
 
 int n;
