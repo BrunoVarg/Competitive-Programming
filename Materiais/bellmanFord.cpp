@@ -1,4 +1,7 @@
-// BELLMAN FORD
+// BELLMAN-FORD
+/*
+Algoritmo de busca de caminho mínimo em um digrafo (grafo orientado ou dirigido) ponderado, ou seja, cujas arestas têm peso, inclusive negativo.
+*/
 
 #include <bits/stdc++.h>
 using namespace std;
