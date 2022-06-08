@@ -1,24 +1,27 @@
+// OPERAÇÕES BITWISE
+
 #include <bits/stdc++.h>
 using namespace std;
-const int MAX = 1e5+7;
 
-int arvore[MAX];
-int N;
 
-int rsq(int x){
-	
-	int s = 0;
-	
-	while(x > 0){ // vamos reduzindo x até acabarmos (quando chegamos a zero)
-		s += arvore[x]; // adicionamos o pedaço de árvore atual à soma
-		x -= (x & -x);  // removemos o bit menos significante
-	}
+// Verificar se o bit esta ligado
+bool isSet(int bitPosition, int number) {
+  	bool ret = ((number & (1 << bitPosition)) != 0);
+  	return ret;
 }
 
-void update(int x, int v){ // adicionar v frutas a caixa x
-	
-	while(x <= N){ // nosso teto, que é quando vamos parar de rodar o algoritmo
-		arvore[x] += v; // adicionamos v frutas a arvore[x], como devemos
-		x += (x & -x);  // atualizamos o valor de x adicionado ele ao seu bit menos significante
-	}
+// Ligar o bit
+bool setBit(int bitPosition, int number) {
+  	return (number | (1 << bitPosition) );
 }
+
+// Gerando todos os subconjuntos de um conjunto em binario
+void possibleSubsets(char S[], int N) {
+    for(int i = 0;i < (1 << N); ++i) {  // i = [0, 2^N - 1]
+        for(int j = 0;j < N;++j)
+            if(i & (1 << j))  // se o j-ésimo bit de i está setado, printamos S[j]
+                cout << S[j] << ‘ ‘;
+        cout << endl;
+    }
+}
+
