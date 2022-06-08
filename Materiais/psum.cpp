@@ -1,6 +1,7 @@
+// PSUM
+
 #include <bits/stdc++.h>
 using namespace std;
-//g++ -std=c++17 -O2 -Wall run.cpp -o run
 
 #define endl "\n"
 #define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
@@ -23,22 +24,27 @@ const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 //         Fé que o AC vem          //
 //----------------------------------//
 
+int psum(int l, int r){
+    if(l==0) return psum[r];
+    else return psum[r] - psum[l-1];
+}
+
 int main(){ sws;
     
     int n, q;
     cin>>n>>q;
 
-    vector<ll> psum(n+1), v(n);
+    vector<ll> psum(n), v(n);
     input(v);
-    psum[0]=0;
-    for(int i=1; i<=n; i++){
-        psum[i] = psum[i-1]+v[i-1];
+    for(int i=0; i<n; i++){
+        if(i==0)psum[i] = v[i];
+        else psum[i] = psum[i-1] + v[i];
     }
     while(q--){
         int l, r;
         cin>>l>>r;
 
-        cout<<(psum[r] - psum[l-1])<<endl;
+        cout<<(psum(l,r))<<endl;
     }
 
     return 0;
