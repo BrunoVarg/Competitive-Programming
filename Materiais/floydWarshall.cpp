@@ -1,6 +1,10 @@
+// FLOYD WARSHALL
+/*
+Algoritmo de caminho mais curto com todos os pares, o que significa que calcula o caminho mais curto entre todos os pares de nós.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
-//g++ -std=c++17 -O2 -Wall x.cpp -o x
 
 #define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define dbg(msg, x) cout << msg << " = " << x << endl
