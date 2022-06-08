@@ -1,12 +1,11 @@
+// DSU
+
 #include <bits/stdc++.h>
 using namespace std;
 
-#define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-#define all(x) begin(x), end(x)
-#define pb push_back
-typedef long long ll;
-typedef pair<int,int> pii;
+
 const int MAX = 1e5+10;
+
 int parent[MAX];
 
 void make(int v) {
@@ -26,9 +25,7 @@ void union(int a, int b) {
         parent[b] = a;
 }
 
-int main(){ sws; 
-
-
+int main(){
 
     return 0;
 }
