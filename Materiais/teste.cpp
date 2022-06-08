@@ -1,3 +1,5 @@
+// TEMPLATE
+
 #include <bits/stdc++.h>
 using namespace std;
 //g++ -std=c++17 -O2 -Wall teste.cpp -o teste
@@ -20,50 +22,10 @@ const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 //----------------------------------//
 //         Fé que o AC vem          //
 //----------------------------------//
-bool equals(vector<int> v){
-    int elem = v[0];
-    for(auto x : v){
-        if(x!=elem)return false;
-    }
-    return true;
-}
+
 int main(){ sws;
 
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
 
-        vector<int> v(n);
-        input(v);
-
-        if(equals(v)){
-            cout<<0<<endl;
-        }else{
-            int final = v[n-1];
-            reverse(all(v));
-            int ans=0;
-            bool x = false;
-            for(int i=0; i<n;i++){
-                if(v[i]!=final){
-                    for(int j=i; j<n; j++){
-                        if(j<2*i){
-                            if(v[j]!=final){
-                                x=true;
-                                v[j] = final;
-                            }
-                        }
-                    }
-                    if(x)ans++;
-                }
-            }
-
-            cout<<ans<<endl;
-            
-        }
-
-    }
 
     return 0;
 }
