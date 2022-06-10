@@ -3,8 +3,9 @@ using namespace std;
 
 #define input(x) for (auto &it : x) cin >> it
 typedef long long ll;
+vector<ll> psum(1e5);
 
-int psum(int l, int r){
+int solve(int l, int r){
     if(l==0) return psum[r];
     else return psum[r] - psum[l-1];
 }
@@ -14,7 +15,7 @@ int main(){
     int n, q;
     cin>>n>>q;
 
-    vector<ll> psum(n), v(n);
+    vector<int> v(n);
     input(v);
     for(int i=0; i<n; i++){
         if(i==0)psum[i] = v[i];
@@ -24,7 +25,7 @@ int main(){
         int l, r;
         cin>>l>>r;
 
-        cout<<(psum(l,r))<<endl;
+        cout<<(solve(l,r))<<endl;
     }
 
     return 0;
