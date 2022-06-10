@@ -1,5 +1,3 @@
-// KRUSKALL
-
 /*
 Busca uma árvore geradora mínima para um grafo conexo com pesos.
 */

@@ -8,7 +8,7 @@ const int MAX = 110;
 
 int n;
 int tab[MAX];
-vi v;
+vector<int> v;
 
 ll dp(int i){
     if(i>=n) return 0;
@@ -21,7 +21,7 @@ ll dp(int i){
     return tab[i];
 }
 
-int main(){ sws; 
+int main(){
     memset(tab, -1, sizeof(tab));
     cin>>n;
 
