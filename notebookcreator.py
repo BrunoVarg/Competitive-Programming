@@ -69,7 +69,7 @@ def create_notebook(section, blocked):
                 name, ext = os.path.splitext(file)
                 name = os.path.split(name)[1]  # Remove Segtree/ prefix
                 file_name = " ".join([x.capitalize() for x in name.split("_")])
-                file_path = os.path.join(path, item, file)
+                file_path = os.path.join(path, item, file).replace('\\','/')
 
                 aux += '\\includes{%s}{%s}\n' % \
                     (file_name, file_path)
@@ -83,13 +83,18 @@ def main():
     blocked = get_blocked()
     create_notebook(section, blocked)
 
-    ''' try:
-        subprocess.check_call(['pdflatex', 'notebook.tex'])
-    except Exception:
-        print("Erro na transformação de LaTex para pdf.")
-        print("Execute manualmente para entender o erro:")
-        print('pdflatex -interaction=nonstopmode -halt-on-error notebook.tex')
-        exit(1) '''
+    cmd = ['pdflatex', '-interaction=nonstopmode', '-halt-on-error',
+           'notebook.tex']
+    with open(os.devnull, 'w') as DEVNULL:
+        try:
+            subprocess.check_call(cmd, stdout=DEVNULL)
+            subprocess.check_call(cmd, stdout=DEVNULL)
+        except Exception:
+            print("Erro na transformação de LaTex para pdf.")
+            print("Execute manualmente para entender o erro:")
+            print('pdflatex -interaction=nonstopmode -halt-on-error notebook.tex')
+            remove_aux()
+            exit(1)
 
     remove_aux()
 

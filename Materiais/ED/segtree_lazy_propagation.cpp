@@ -1,11 +1,9 @@
-// LAZY PROPAGATION - SEG TREE
-
 #include <bits/stdc++.h>
 #define ll long long
 
 using namespace std;
 
-const int MAX = 1e5; // tamanho mÃ¡ximo do vetor
+const int MAX = 1e5; // tamanho maximo do vetor
 const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 
 // End Template //
@@ -42,15 +40,15 @@ void prop(int l, int r, int no){
 
 void update(int A, int B, int x, int l=0, int r=N-1, int no=1){
     prop(l, r, no);
-    // 1Âº caso
+    // caso 1
     if(B<l or r<A) return;
-    // 2Âº caso
+    // caso 2
     if(A<=l and r<=B){
         lazy[no] = x;
         prop(l, r, no);
         return;
     }
-    // 3Âº caso
+    // caso 3
     int mid = (l+r)/2;
 
     update(A, B, x, l, mid, 2*no);
@@ -61,11 +59,11 @@ void update(int A, int B, int x, int l=0, int r=N-1, int no=1){
 
 ll query(int A, int B, int l=0, int r=N-1, int no=1){
     prop(l, r, no);
-    // 1Âº caso
+    // caso 1
     if(B<l or r<A) return 0;
-    // 2Âº caso
+    // caso 2
     if(A<=l and r<=B) return tree[no];
-    // 3Âº caso
+    // caso 3
     int mid = (l+r)/2;
 
     return merge(query(A, B, l, mid, 2*no),

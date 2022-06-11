@@ -16,14 +16,14 @@ vector<pair<int, ll>> g[N];
 void dijkstra(int start){
 
 	// inicialmente a distancia do vertice
-	// start para todo os outros é infinita
+	// start para todo os outros eh infinita
 	for(int u = 1; u <= n; u++)
 		d[u] = oo;
 
 	// fila de prioridade de pair<ll, int>, mas que o
 	// menor pair fica no topo da fila
 	// guardamos um pair <distancia ate o vertice, vertice>
-	// assim o topo da fila sempre é o vertice com menor distancia
+	// assim o topo da fila sempre eh o vertice com menor distancia
 	priority_queue<pair<ll, int>, vector<pair<ll, int>>,
 	greater<pair<ll, int>> > pq;
 
@@ -39,7 +39,7 @@ void dijkstra(int start){
 			tie(v, w) = edge;
 
 			// se a distancia ate o u somado com o peso
-			// da aresta é menor do que a distancia ate o v que
+			// da aresta eh menor do que a distancia ate o v que
 			// tinhamos antes, melhoramos a distancia ate o v
 			if(d[v] > d[u] + w){
 				d[v] = d[u] + w;
@@ -51,7 +51,7 @@ void dijkstra(int start){
 
 int main(){
 
-	// lê o input, qnt de vertices, arestas
+	// le o input, qnt de vertices, arestas
 	// e vertice inicial(start)
 	int start = 0; // inicial
 	dijkstra(start); 

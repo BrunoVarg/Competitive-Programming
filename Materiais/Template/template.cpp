@@ -13,6 +13,7 @@ using namespace std;
 #define ff first
 #define ss second
 #define TETO(a, b) ((a) + (b-1))/(b)
+#define loop(i,a,n) for(int i=a; i < n; i++)
 typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pii;

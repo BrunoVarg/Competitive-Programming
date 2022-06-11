@@ -1,5 +1,5 @@
 /*
-Algoritmo de busca de caminho mínimo em um digrafo (grafo orientado ou dirigido) ponderado, ou seja, cujas arestas têm peso, inclusive negativo.
+Algoritmo de busca de caminho minimo em um digrafo (grafo orientado ou dirigido) ponderado, ou seja, cujas arestas tem peso, inclusive negativo.
 */
 
 #include <bits/stdc++.h>
@@ -41,7 +41,7 @@ int main(){
     }
 
     for(int i=1; i<=n; i++){
-        cout<<"Distancia até o vertice "<<i<<" "<<distancia[i]<<endl;
+        cout<<"Distancia ate o vertice "<<i<<" "<<distancia[i]<<endl;
     }
 
     return 0;

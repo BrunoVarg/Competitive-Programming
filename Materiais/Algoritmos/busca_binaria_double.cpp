@@ -1,5 +1,3 @@
-// BUSCA BINÁRIA USANDO DOUBLE
-
 #include <bits/stdc++.h>
 using namespace std;
  
@@ -17,7 +15,7 @@ ll check(double x){
     return sum;
 }
 
-int main(){ sws;
+int main(){
     
     int k;
     cin>>n>>k;
@@ -34,7 +32,6 @@ int main(){ sws;
         else{
             r = mid;
         }
-            
     }
 
     cout<<fixed<<setprecision(7)<<mid<<endl;

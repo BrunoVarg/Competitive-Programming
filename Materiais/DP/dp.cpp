@@ -1,4 +1,4 @@
-// DP - PROGRAMAÇÃO DINÂMICA
+// DP - Dynamic Programming
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -28,7 +28,6 @@ int main(){
     v.assign(n, 0);
 
     cout<<dp(0)<<endl;
-
 
     return 0;
 }

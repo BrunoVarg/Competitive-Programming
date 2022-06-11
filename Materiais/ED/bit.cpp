@@ -1,4 +1,4 @@
-// OPERAÇÕES BITWISE
+// Bitwise Operations
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -19,8 +19,8 @@ bool setBit(int bitPosition, int number) {
 void possibleSubsets(char S[], int N) {
     for(int i = 0;i < (1 << N); ++i) {  // i = [0, 2^N - 1]
         for(int j = 0;j < N;++j)
-            if(i & (1 << j))  // se o j-ésimo bit de i está setado, printamos S[j]
-                cout << S[j] << ‘ ‘;
+            if(i & (1 << j))  // se o j-esimo bit de i esta setado, printamos S[j]
+                cout << S[j] << " ";
         cout << endl;
     }
 }

@@ -1,4 +1,3 @@
-// SEGTREE 2
 
 #include <bits/stdc++.h>
 #define ff first
@@ -9,7 +8,7 @@
 
 using namespace std;
 
-const int MAX = 1e5; // tamanho mÃ¡ximo do vetor
+const int MAX = 1e5; // tamanho maximo do vetor
 const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 
 // End Template //
@@ -44,11 +43,11 @@ void update(int id, int x, int l, int r, int no){
 }
 
 ll query(int A, int B, int l, int r, int no){
-    // 1Âº caso
+    // caso 1
     if(B<l or r<A) return 0;
-    // 2Âº caso
+    // caso 2
     if(A<=l and r<=B) return tree[no];
-    // 3Âº caso
+    // caso 3
     int mid = (l+r)/2;
     ll sumLeft = query(A, B, l, mid, 2*no);
     ll sumRight = query(A, B, mid+1, r, 2*no+1);

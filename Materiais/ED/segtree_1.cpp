@@ -1,5 +1,3 @@
-// SEGTREE
-
 #include <bits/stdc++.h>
 using namespace std;
 class SegTree{
@@ -13,36 +11,36 @@ class SegTree{
     }
 
     int query(int sti, int stl, int str, int l, int r){
-    //O nodo está fora do intervalo que estamos interessados, retorne o elemento neutro que não afeta a consulta
+    //O nodo esta fora do intervalo que estamos interessados, retorne o elemento neutro que nao afeta a consulta
         if(str < l || r < stl) 
             return el_neutro;
 
-    // O nodo está completamente incluído no intervalos que estamos interessados, retorne a informação contida naquele nodo.
+    // O nodo esta completamente incluido no intervalos que estamos interessados, retorne a informacao contida naquele nodo.
         if(stl >= l and str <= r)
             return st[sti];
 
-    // Se chegarmos aqui, é porque esse Nodo está parcialmente contido no intervalo que estamos interessados. Então, continuamos procurando nos filhos.
+    // Se chegarmos aqui, eh porque esse Nodo esta parcialmente contido no intervalo que estamos interessados. Entao, continuamos procurando nos filhos.
         int mid = (str+stl)/2;
 
         return f(query(sti*2+1,stl,mid,l,r),query(sti*2+2,mid+1,str,l,r));
     }
 
     void update(int sti, int stl, int str, int i, int amm){
-        // Chegamos no índice que queremos, vamos atualizar o valor
+        // Chegamos no indice que queremos, vamos atualizar o valor
         if(stl == i and str == i){
             st[sti] = amm;
             return;
         }
-        // O intervalo que estamos não contem o índice que queremos atualizar, retorne
+        // O intervalo que estamos nao contem o indice que queremos atualizar, retorne
         if(stl > i or str < i)
             return;
         
-        // O intervalo contém o índice, mas temos que chegar no nodo específico, recurse para os filhos.
+        // O intervalo contem o indice, mas temos que chegar no nodo especifico, recurse para os filhos.
         int mid = (stl + str)/2;
 
         update(sti*2+1,stl,mid,i,amm);
         update(sti*2+2,mid+1,str,i,amm);
-        // Após os filhos mais em baixo, precisamos atualizar o valor desse nodo
+        // Apos os filhos mais em baixo, precisamos atualizar o valor desse nodo
         st[sti] = f(st[sti*2+1],st[sti*2+2]);
     }
     public:
