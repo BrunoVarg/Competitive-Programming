@@ -12,7 +12,7 @@ long long solve(int i, int P) {
 	if(vis[i][P]) return dp[i][P];
 	vis[i][P] = 1;
 	
-	// primeira possibilidade, não adicionar o elemento
+	// primeira possibilidade, nao adicionar o elemento
 	dp[i][P] = solve(i+1, P);
 	
 	// segunda possibilidade, adicionar o elemento.

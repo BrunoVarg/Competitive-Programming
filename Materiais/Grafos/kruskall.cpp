@@ -1,5 +1,5 @@
 /*
-Busca uma árvore geradora mínima para um grafo conexo com pesos.
+Busca uma arvore geradora minima para um grafo conexo com pesos.
 */
 
 #include <iostream>
@@ -18,18 +18,18 @@ bool comp(t_aresta a, t_aresta b){ return a.dis < b.dis; }
 #define MAXN 50500
 #define MAXM 200200
 
-int n, m; // número de vértices e arestas
+int n, m; // numero de vertices e arestas
 t_aresta aresta[MAXM];
 
 // para o union find
 int pai[MAXN];
 int peso[MAXN];
 
-// a árvore
+// a arvore
 t_aresta mst[MAXM];
 //--------------------
 
-// funções do union find
+// funcoes do union find
 int find(int x){
     if(pai[x] == x) return x;
     return pai[x] = find(pai[x]);

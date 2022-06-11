@@ -7,7 +7,7 @@ typedef pair<int,int> pii;
 const int MAX = 1e5+10;
 const ll MOD = 1e9+5;
 
-vector<int> adj(MAX);
+vector<int> adj[MAX];
 
 pair<int, int> bfs(int s, int N){
 

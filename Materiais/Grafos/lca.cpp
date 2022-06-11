@@ -1,5 +1,5 @@
 /*
-Lowest Common ancestor (LCA) - é o nome típico dado para o seguinte problema: dado uma Árvore cuja raiz é um vértice arbitrário e dois vértices u,v que a pertencem, diga qual é o nó mais baixo(relativo a raiz) que é ancestral de u,v.
+Lowest Common ancestor (LCA) - eh o nome tipico dado para o seguinte problema: dado uma Arvore cuja raiz eh um vertice arbitrario e dois vertices u,v que a pertencem, diga qual eh o no mais baixo(relativo a raiz) que eh ancestral de u,v.
 */
 
 #include <bits/stdc++.h>
@@ -50,7 +50,7 @@ int main() {
 	// codigo
 	// le os pais e monta o grafo
 	pai[raiz] = raiz;
-	pre_proccess_depth(raiz); // tipicamente qual vertice é a raiz nao importa
+	pre_proccess_depth(raiz); // tipicamente qual vertice eh a raiz nao importa
 	for(int node = 0; node < SIZE; node++){
 		p2k[node][0] = pai[node];
 	}

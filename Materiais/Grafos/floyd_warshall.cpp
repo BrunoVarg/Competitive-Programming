@@ -1,5 +1,5 @@
 /*
-Algoritmo de caminho mais curto com todos os pares, o que significa que calcula o caminho mais curto entre todos os pares de nós.
+Algoritmo de caminho mais curto com todos os pares, o que significa que calcula o caminho mais curto entre todos os pares de nos.
 */
 
 #include <bits/stdc++.h>
