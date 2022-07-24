@@ -25,6 +25,7 @@ def remove_aux():
         'notebook.aux',
         'notebook.log',
         'notebook.toc',
+        'notebook.tex'
         'texput.log',
     ]
     for item in items:

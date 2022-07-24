@@ -8,7 +8,7 @@ const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 
 // End Template //
 
-vector<ll> lazy(4*MAX, -1);
+vector<ll> lazy(4*MAX, 0);
 ll tree[4*MAX], vet[MAX];
 int N;
 
@@ -29,12 +29,12 @@ void build(int l=0, int r=N-1, int no=1){
 }
 
 void prop(int l, int r, int no){
-    if(lazy[no]!=-1){
+    if(lazy[no]!=0){
         tree[no] = (r-l+1)*lazy[no];
         if(l!=r){
             lazy[2*no] = lazy[2*no+1] = lazy[no];
         }
-        lazy[no] = -1;
+        lazy[no] = 0;
     }
 }
 
@@ -74,25 +74,38 @@ ll query(int A, int B, int l=0, int r=N-1, int no=1){
 int32_t main()
 {
 
-    int Q, opt, a, b, l, r, k;
+    int Q, opt, a, b, l, r, k, idx;
     cin >> N >> Q;
-    for(int i=0;i<N;i++)
-        cin >> vet[i];
-
+    vector<int> vaux(N);
+    for(int i=0;i<N;i++){
+        cin >> vaux[i];
+        vet[i] = vaux[i];
+    }
+    for(int i=0; i<N; i++){
+        if(i==0)vet[i] = vaux[i];
+        else vet[i] = vet[i-1] + vaux[i];
+    }
     build();
 
     for(int i=0;i<Q;i++){
         cin >> opt;
         if(opt==1){ // update
-            cin >> a >> b >> k;
-            a--;b--;
-            update(a, b, k);
+            cin >> idx >> k;
+            idx--;
+            int soma = -vaux[idx] + k;
+
+            vaux[idx] = k;
+            update(idx, N-1, soma);
         }else{ // query
             cin >> l >> r;
             l--;r--; // indice indexado em 0
             cout << query(l, r) << endl;
         }
     }
+    for(int i=0; i<N; i++){
+        cout<<vet[i]<<" ";
+    }
+    cout<<endl;
 
     return 0;
 }

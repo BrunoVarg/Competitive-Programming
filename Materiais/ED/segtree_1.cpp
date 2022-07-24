@@ -1,58 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 class SegTree{
-    vector<int> st;
+    vector<int> seg;
     int size;
+    int elem_neutro = 0;
 
-    int el_neutro = -(1e9 + 7);
-
-    int f(int a, int b){
-        return max(a,b);
+    int merge(int a, int b){
+        return a^b;
     }
-
-    int query(int sti, int stl, int str, int l, int r){
-    //O nodo esta fora do intervalo que estamos interessados, retorne o elemento neutro que nao afeta a consulta
-        if(str < l || r < stl) 
-            return el_neutro;
-
-    // O nodo esta completamente incluido no intervalos que estamos interessados, retorne a informacao contida naquele nodo.
-        if(stl >= l and str <= r)
-            return st[sti];
-
-    // Se chegarmos aqui, eh porque esse Nodo esta parcialmente contido no intervalo que estamos interessados. Entao, continuamos procurando nos filhos.
-        int mid = (str+stl)/2;
-
-        return f(query(sti*2+1,stl,mid,l,r),query(sti*2+2,mid+1,str,l,r));
-    }
-
-    void update(int sti, int stl, int str, int i, int amm){
-        // Chegamos no indice que queremos, vamos atualizar o valor
-        if(stl == i and str == i){
-            st[sti] = amm;
+    void update(int idx, int val, int stl, int str, int no){
+        if(stl == idx and str==idx){
+            seg[no] = val;
             return;
         }
-        // O intervalo que estamos nao contem o indice que queremos atualizar, retorne
-        if(stl > i or str < i)
-            return;
-        
-        // O intervalo contem o indice, mas temos que chegar no nodo especifico, recurse para os filhos.
-        int mid = (stl + str)/2;
+        if(stl>idx or str<idx) return;
 
-        update(sti*2+1,stl,mid,i,amm);
-        update(sti*2+2,mid+1,str,i,amm);
-        // Apos os filhos mais em baixo, precisamos atualizar o valor desse nodo
-        st[sti] = f(st[sti*2+1],st[sti*2+2]);
+        int mid = (stl+str)/2;
+        update(idx, val, stl, mid, 2*no);
+        update(idx, val, mid+1, str, 2*no+1);
+
+        seg[no] = merge(seg[2*no], seg[2*no+1]);
+    }
+
+    int query(int l, int r, int stl, int str, int no){
+        if(str<l or stl>r) return elem_neutro;
+        if(stl>=l and str<=r) return seg[no];
+
+        int mid = (stl+str)/2;
+        int x = query(l, r, stl, mid, 2*no);
+        int y = query(l, r, mid+1, str, 2*no+1);
+        return merge(x, y);
     }
     public:
-        SegTree(int n):  st(4*n,0){size = n;}
-        int query(int l, int  r){return query(0,0,size-1,l,r);}
-        void update(int i, int amm){update(0,0,size-1,i,amm);}
+        SegTree(int n): seg(4*n, 0){size=n;}
+        int query(int l, int r){return query(l, r, 0, size-1, 1);}
+        void update(int idx, int val){update(idx, val, 0, size-1, 1);}
+        void out(){for(int i=0; i<size; i++){cout<<query(i, i)<<" ";cout<<endl;}}
 };
 
-int main(){
-    vector<int> v;
-    SegTree st(v.size());
-    for(int i = 0; i< v.size();i++){
-        st.update(i,v[i]);
+int32_t main(){
+    int n, q;
+    cin>>n>>q;
+    SegTree seg(n);
+    for(int i=0; i<n; i++){
+        int x; cin>>x;
+        seg.update(i,x);
+    };
+    for(int i=0; i<q; i++){
+        int a, b;
+        cin>>a>>b;
+
+        cout<<seg.query(a-1, b-1)<<endl;
     }
+    
+    return 0;
 }
