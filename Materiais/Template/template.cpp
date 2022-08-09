@@ -2,6 +2,7 @@
 using namespace std;
 //alias comp='g++ -std=c++17 -g -O2 -Wall -fsanitize=address -o out'
 
+#define int long long
 #define endl "\n"
 #define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define all(x) x.begin(), x.end()
@@ -17,14 +18,12 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pii;
+typedef priority_queue<int, vector<int>, greater<int>> pqi;
 const ll MOD = 1e9+7;
 const int MAX = 1e4+5;
 const ll LLINF = 0x3f3f3f3f3f3f3f3f;
-//----------------------------------//
-//         Fé que o AC vem          //
-//----------------------------------//
 
-int main(){ sws; 
+int32_t main(){ sws; 
     
 
     return 0;
