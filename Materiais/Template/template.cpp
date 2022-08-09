@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-//g++ -std=c++17 -O2 -Wall run.cpp -o run
+//alias comp='g++ -std=c++17 -g -O2 -Wall -fsanitize=address -o out'
 
 #define endl "\n"
 #define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
