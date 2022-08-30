@@ -1,3 +1,4 @@
+
 // 2 -> se é par
 // 3 -> se a soma dos algarismos é divisivel por 3
 // 4 -> se os dois ultimos algarismos é divisivel por 4
@@ -7,3 +8,4 @@
 // 8 -> se os 3 ultimos algarismos é divisivel por 8
 // 9 -> se a soma dos algarimos é divisivel por 9
 // 10 -> se o ultimo algarimo é 0
+
