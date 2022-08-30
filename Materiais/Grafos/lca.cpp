@@ -6,6 +6,7 @@ Lowest Common ancestor (LCA) - eh o nome tipico dado para o seguinte problema: d
 using namespace std;
 const int SIZE = 1e5;
 int depth[SIZE];
+int pai[SIZE];
 vector<int> graph[SIZE];
 
 void pre_process_depth(int u, int d) {
@@ -35,7 +36,7 @@ int lca(int u, int v) {
 int climb(int node, int k){
 	for(int i = 20; i >= 0; i--) {
 		if(k >= (1 << i)) {
-			node = p2k(node,i);
+			node = p2k[node][i];
 			k -= (1 << i);
 		}
 	}
@@ -49,8 +50,9 @@ int dist(int u, int v){
 int main() {
 	// codigo
 	// le os pais e monta o grafo
+	int raiz=0;
 	pai[raiz] = raiz;
-	pre_proccess_depth(raiz); // tipicamente qual vertice eh a raiz nao importa
+	pre_process_depth(raiz); // tipicamente qual vertice eh a raiz nao importa
 	for(int node = 0; node < SIZE; node++){
 		p2k[node][0] = pai[node];
 	}
