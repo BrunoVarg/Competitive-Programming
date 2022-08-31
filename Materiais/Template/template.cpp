@@ -22,6 +22,8 @@ typedef priority_queue<int, vector<int>, greater<int>> pqi;
 const ll MOD = 1e9+7;
 const int MAX = 1e4+5;
 const ll LLINF = 0x3f3f3f3f3f3f3f3f;
+const double PI = acos(-1);
+
 
 int32_t main(){ sws; 
     

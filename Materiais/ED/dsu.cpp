@@ -4,9 +4,11 @@ using namespace std;
 const int MAX = 1e5+10;
 
 int parent[MAX];
+int sz[MAX];
 
 void make(int v){
     parent[v] = v;
+    sz[v] = 1;
 }
 
 int find(int v){
@@ -18,8 +20,14 @@ int find(int v){
 void _union(int a, int b){
     a = find(a);
     b = find(b);
-    if (a != b)
+
+    if(b>a)swap(a,b);
+
+    if (a != b){
+        sz[a] += sz[b];
         parent[b] = a;
+    }
+
 }
 
 int main(){
