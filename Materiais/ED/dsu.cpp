@@ -21,13 +21,11 @@ void _union(int a, int b){
     a = find(a);
     b = find(b);
 
-    if(b>a)swap(a,b);
-
+    if(sz[b]>sz[a]) swap(a,b);
     if (a != b){
         sz[a] += sz[b];
         parent[b] = a;
     }
-
 }
 
 int main(){
