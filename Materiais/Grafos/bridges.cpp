@@ -16,7 +16,7 @@ void dfs(int v, int p=-1){
     visited[v] = true;
     low[v] = tin[v] = timer++;
     for(auto u: adj[v]){
-        if(u!=p){
+        if(u != p){
             if(!visited[u]){
                 dfs(u, v);
                 if(low[u] > tin[v]) bridge=true; // bridge between v and u
