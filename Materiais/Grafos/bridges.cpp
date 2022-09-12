@@ -12,16 +12,16 @@ int low[MAX], tin[MAX];
 bool bridge=false;
 bool visited[MAX];
 
-void dfs(int v, int p=-1){
-    visited[v] = true;
-    low[v] = tin[v] = timer++;
-    for(auto u: adj[v]){
-        if(u != p){
-            if(!visited[u]){
-                dfs(u, v);
-                if(low[u] > tin[v]) bridge=true; // bridge between v and u
+void dfs(int u, int p=-1){
+    visited[u] = true;
+    low[u] = tin[u] = timer++;
+    for(auto v: adj[u]){
+        if(v != p){
+            if(!visited[v]){
+                dfs(v, u);
+                if(low[v] > tin[u]) bridge=true; // bridge between v and u
             }
-            low[v] = min(low[u], low[v]);
+            low[u] = min(low[v], low[u]);
         }
     }
 }
