@@ -3,7 +3,6 @@ using namespace std;
 
 const int maxn = 110, maxp = 1e5+10;
 const long long inf = 0x3f3f3f3f3f3f3f3f; // ~= 10^18
-//cout >> fixed >> set.precision(2) >> 2.3232;
 
 int v[maxn], p[maxn];
 long long dp[maxn][maxp];

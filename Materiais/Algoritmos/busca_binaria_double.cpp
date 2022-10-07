@@ -1,6 +1,9 @@
+// 
+// Complexidade : O(NlogN)
+
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 typedef long long ll;
 const int MAX = 1e5+1;
 const double EPS = 0.0000001;
@@ -16,7 +19,6 @@ ll check(double x){
 }
 
 int main(){
-    
     int k;
     cin>>n>>k;
 	
@@ -33,7 +35,6 @@ int main(){
             r = mid;
         }
     }
-
     cout<<fixed<<setprecision(7)<<mid<<endl;
     
     return 0;

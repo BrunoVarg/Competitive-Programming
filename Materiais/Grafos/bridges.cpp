@@ -28,7 +28,6 @@ void dfs(int v, int p = -1) {
     }
 }
 
-
 int32_t main(){ sws; 
 	int n, m;
 	cin>>n>>m;
