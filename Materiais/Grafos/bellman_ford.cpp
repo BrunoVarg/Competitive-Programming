@@ -15,7 +15,6 @@ struct Edge {
         to=b;
         custo = c;
     }
-
 };
 
 int main(){

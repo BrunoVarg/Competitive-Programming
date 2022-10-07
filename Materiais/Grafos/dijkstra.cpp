@@ -8,22 +8,12 @@ const ll oo = 1e18;
 ll d[N]; // vetor onde guardamos as distancias
 
 int n; // numeros de vertices
-
-// lista de adjacencias guarda
-// pair <vertice para onde a aresta vai, peso da aresta>
 vector<pair<int, ll>> g[N];
 
 void dijkstra(int start){
-
-	// inicialmente a distancia do vertice
-	// start para todo os outros eh infinita
 	for(int u = 1; u <= n; u++)
 		d[u] = oo;
 
-	// fila de prioridade de pair<ll, int>, mas que o
-	// menor pair fica no topo da fila
-	// guardamos um pair <distancia ate o vertice, vertice>
-	// assim o topo da fila sempre eh o vertice com menor distancia
 	priority_queue<pair<ll, int>, vector<pair<ll, int>>,
 	greater<pair<ll, int>> > pq;
 
@@ -37,10 +27,6 @@ void dijkstra(int start){
 		if(dt > d[u]) continue;
 		for(auto edge : g[u]){
 			tie(v, w) = edge;
-
-			// se a distancia ate o u somado com o peso
-			// da aresta eh menor do que a distancia ate o v que
-			// tinhamos antes, melhoramos a distancia ate o v
 			if(d[v] > d[u] + w){
 				d[v] = d[u] + w;
 				pq.emplace(d[v], v);
