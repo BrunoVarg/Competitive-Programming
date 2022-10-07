@@ -1,12 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n; // number of nodes
-vector<vector<int>> adj; // adjacency list of graph
+#define endl "\n"
+#define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define pb push_back
+const int MAX = 1e5+5;
 
-vector<bool> visited;
-vector<int> tin, low;
-int timer;
+vector<int> adj[MAX];
+int timer=0;
+int low[MAX], tin[MAX];
+bool bridge=false;
+bool visited[MAX];
 
 void dfs(int v, int p = -1) {
     visited[v] = true;
@@ -18,19 +22,29 @@ void dfs(int v, int p = -1) {
         } else {
             dfs(to, v);
             low[v] = min(low[v], low[to]);
-            if (low[to] > tin[v])
-                //IS_BRIDGE(v, to);
+            if (low[to] > tin[v]){}
+                //IS_BRIDGE(v, to);   
         }
     }
 }
 
-void find_bridges() {
-    timer = 0;
-    visited.assign(n, false);
-    tin.assign(n, -1);
-    low.assign(n, -1);
-    for (int i = 0; i < n; ++i) {
-        if (!visited[i])
-            dfs(i);
-    }
+
+int32_t main(){ sws; 
+	int n, m;
+	cin>>n>>m;
+	
+	for(int i=0; i<m; i++){
+	    int a, b;
+	    cin>>a>>b;
+	    
+	    adj[a].pb(b);
+	    adj[b].pb(a);
+	}
+	for(int i=1; i<=n; i++){
+	    if(!visited[i]) dfs(i);
+	}
+	if(bridge)cout<<"YES"<<endl;
+	else cout<<"NO"<<endl;
+
+    return 0;
 }
