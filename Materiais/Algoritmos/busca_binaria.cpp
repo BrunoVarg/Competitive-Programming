@@ -41,5 +41,4 @@ int bb_maior(int a, int b){
         if (!check(mid)) r = mid;
         else l = mid + 1;
     }
-
 }

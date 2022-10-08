@@ -1,3 +1,6 @@
+// Acha o menor caminho de um ponto inicial para todos os outros
+// Complexidade: O(NlogN)
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

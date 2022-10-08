@@ -1,5 +1,6 @@
 /*
-Algoritmo de caminho mais curto com todos os pares, o que significa que calcula o caminho mais curto entre todos os pares de nos.
+Algoritmo de caminho mais curto com todos os pares.
+Complexidade: O(N³)
 */
 
 #include <bits/stdc++.h>
@@ -9,8 +10,7 @@ const int oo = 100000000; // infinito
 
 int main(){
 
-    int n, m;
-    cin>>n>>m;
+    int n, m; cin>>n>>m;
 
     vector<vector<int>> dist(n+1, vector<int> (n+1));
 
