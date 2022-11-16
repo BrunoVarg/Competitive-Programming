@@ -1,4 +1,9 @@
 // Constroi e procura por uma string em uma arvore
+// Trie t;
+// Trie t(qtd_char, c_min, max_size)
+// qtd_char = qntd maxima de caracteres
+// c_min = menor caractere
+
 // Complexidade - O(N*|s|*qtd_char)
 
 #include <bits/stdc++.h>
