@@ -1,3 +1,5 @@
+
+
 int psum[MAX][MAX];
  
 int32_t main(){ sws; 
@@ -13,11 +15,11 @@ int32_t main(){ sws;
             psum[x][y] += x*y;
         }
         
-        for(int i=1; i<MAX; i++){
-            for(int j=1; j<MAX; j++){
+        for(int i=1; i<MAX; i++)
+            for(int j=1; j<MAX; j++)
                 psum[i][j] += psum[i-1][j];
-            }
-        }
+            
+        
         
         for(int i=1; i<MAX; i++){
             for(int j=1; j<MAX; j++){
