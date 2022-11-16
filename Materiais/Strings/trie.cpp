@@ -3,6 +3,7 @@
 // Trie t(qtd_char, c_min, max_size)
 // qtd_char = qntd maxima de caracteres
 // c_min = menor caractere
+// max_size = tamanho maximo de strings
 
 // Complexidade - O(N*|s|*qtd_char)
 
@@ -14,7 +15,6 @@ const int MAX = 2005;
 
 class Trie{
 	int node = 0;
-	// number of strings
 	char c_min;
 	int qtd_char, max_size;
 	vector<vector<int>> trie;
