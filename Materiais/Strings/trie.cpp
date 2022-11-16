@@ -14,7 +14,7 @@ using namespace std;
 const int MAX = 2005;
 
 class Trie{
-	int node = 0;
+	int node = 1;
 	char c_min;
 	int qtd_char, max_size;
 	vector<vector<int>> trie;
