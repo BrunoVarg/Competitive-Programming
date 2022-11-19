@@ -1,5 +1,17 @@
-int fast_exp(int base, int e){
-    if(e == 0) return 1;
-    if(e % 2) return base * fast_exp(base * base,e/2);
-    else return fast_exp(base * base, e/2);
+// recursivo
+int fast_exp(int base, int e, int m){
+    if(!e) return 1;
+    int ans = fast_exp(base * base % m, e/2, m);
+    if(e % 2) return base * ans % m;
+    else return ans;
+}
+//iterativo
+int fast_exp(int base, int e, int m) { // iterativo
+	int ret = 1;
+	while (e) {
+		if (e & 1) ret = (ret * base) % m;
+		e >>= 1;
+		base = (base * base) % m;
+	}
+	return ret;
 }

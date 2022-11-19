@@ -17,7 +17,7 @@ class DSU{
         return parent[v] = find(parent[v]);
     }
 
-    void union(int a, int b){
+    void union_(int a, int b){
         a = find(a);
         b = find(b);
 
