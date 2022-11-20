@@ -30,7 +30,7 @@ void build(int l=0, int r=N-1, int no=1){
 
 void prop(int l, int r, int no){
     if(lazy[no]!=0){
-        tree[no] = (r-l+1)*lazy[no];
+        tree[no] = (r-l+1)*lazy[no]; //acho que na verdade é += em vez de =
         if(l!=r){
             lazy[2*no] = lazy[2*no+1] = lazy[no];
         }
