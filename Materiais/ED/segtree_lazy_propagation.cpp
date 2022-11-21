@@ -4,7 +4,7 @@ int tree[4*MAX], vet[MAX];
 int n;
  
 int merge(int a, int b){
-    return a + b;
+    return a + b; //seg de soma
 }
  
 void build(int l=0, int r=n-1, int no=1){
@@ -22,10 +22,10 @@ void build(int l=0, int r=n-1, int no=1){
  
 void prop(int l, int r, int no){
     if(lazy[no]!=0){
-        tree[no] += (r-l+1)*lazy[no];
+        tree[no] += (r-l+1)*lazy[no]; //update de soma
         if(l!=r){
-            lazy[2*no] += lazy[no];
-            lazy[2*no+1] += lazy[no];
+            lazy[2*no] += lazy[no]; //update de soma
+            lazy[2*no+1] += lazy[no]; //update de soma
         }
         lazy[no] = 0;
     }
@@ -37,7 +37,7 @@ void update(int A, int B, int x, int l=0, int r=n-1, int no=1){
     if(B<l or r<A) return;
     // caso 2
     if(A<=l and r<=B){
-        lazy[no] += x;
+        lazy[no] += x; //update de soma
         prop(l, r, no);
         return;
     }
