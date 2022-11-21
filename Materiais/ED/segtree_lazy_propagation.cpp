@@ -64,26 +64,23 @@ int query(int A, int B, int l=0, int r=n-1, int no=1){
 }
  
  
-int32_t main(){sws;
-	int q;
-	cin>>n>>q;
- 
+int32_t main(){
+    int q;
+    cin>>n>>q;
     for(int i=0;i<n;i++) cin >> vet[i];
     build();
- 
-	while(q--){
-		int opt; cin>>opt;
-		if(opt == 1){
-			int l, r, u;
-			cin>>l>>r>>u;
-			l--; r--;
-			update(l, r, u);
-		}else{
-			int k; cin>>k;
-			k--;
-			cout<< query(k, k) <<endl;
-		}
-	}
- 
+    while(q--){
+        int opt; cin>>opt;
+        if(opt == 1){
+            int l, r, u;
+            cin>>l>>r>>u;
+            l--; r--;
+            update(l, r, u);
+        }else{
+            int k; cin>>k;
+            k--;
+            cout<< query(k, k)<<endl;
+        }
+    }
     return 0;
 }
