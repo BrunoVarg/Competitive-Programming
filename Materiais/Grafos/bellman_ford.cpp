@@ -1,47 +1,58 @@
 /*
 Algoritmo de busca de caminho minimo em um digrafo (grafo orientado ou dirigido) ponderado, ou seja, cujas arestas tem peso, inclusive negativo.
+Acha ciclo negativo
+O(V*E)
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
-// pode usar uma tuple
-struct Edge {
-    // [de onde vem, pra onde vai, peso]
-    int from, to, custo;
-
-    Edge(int a=0, int b=0,int c=0 ){
-        from = a;
-        to=b;
-        custo = c;
-    }
-};
-
-int main(){
-
+int d[MAX];
+int parent[MAX];
+vector<pair<int,int>> adj[MAX];
+ 
+int32_t main(){ sws; 
     int n, m;
     cin>>n>>m;
-    vector<Edge> arestas(m);
-
+    for(int i=1; i<=n; i++){
+        d[i] = LLINF;
+    }
     for(int i=0; i<m; i++){
         int a, b, c;
         cin>>a>>b>>c;
-        arestas[i] = Edge(a, b, c);
+        adj[a].pb({b,c});
     }
+    d[1] = 0;
 
-    vector<int> distancia(n + 1, 100000000);
-    distancia[1]=0;
-    for(int i=0; i<n-1; i++){
-        for(auto aresta : arestas){
-            if (distancia[aresta.from] + aresta.custo < distancia[aresta.to]){
-                distancia[aresta.to] = distancia[aresta.from] + aresta.custo;
+    int src_cycle = -1;
+    for(int j=1; j<=n and src_cycle; j++){
+        src_cycle = 0;
+        for(int u=1; u <= n; u++){
+            for(auto [v, w]: adj[u]){
+                if(d[u] + w < d[v]){
+                    d[v] = d[u] + w;
+                    parent[v] = u;
+                    src_cycle = v;
+                }
             }
         }
     }
+    // there is no negative cycle
+    if(!src_cycle){cout<<"NO"<<endl;}
+    else {
+        // there is negative cycle
+        cout<<"YES"<<endl;
+        vector<int> v;
+        int a = src_cycle;
+        for(int i = 0; i < n; i++)
+            src_cycle = parent[src_cycle];
 
-    for(int i=1; i<=n; i++){
-        cout<<"Distancia ate o vertice "<<i<<" "<<distancia[i]<<endl;
+        int atual=src_cycle;
+        while(true){
+            v.pb(atual);
+            if(atual == src_cycle && v.size()>1)break;
+            atual = parent[atual];
+        }
+        reverse(all(v));
+        print(v, (int)v.size());
     }
-
+ 
     return 0;
 }
