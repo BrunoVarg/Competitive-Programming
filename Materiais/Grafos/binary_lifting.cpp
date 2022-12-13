@@ -1,17 +1,18 @@
 vector<int> adj[MAX];
-int up[MAX][30], parent[MAX];
+const int LOG = 30;
+int up[MAX][LOG], parent[MAX];
  
 void process(int n){
     for(int v=1; v<=n; v++){
         up[v][0]= parent[v];
-        for(int i=1; i<30; i++){
+        for(int i=1; i<LOG; i++){
             up[v][i] = up[ up[v][i-1] ][i-1];
         }
     }
 }
  
 int jump(int n, int k){
-    for(int i=0; i<30; i++){
+    for(int i=0; i<LOG; i++){
 		if(k & (1 << i)){
 			n = up[n][i];
 		}
