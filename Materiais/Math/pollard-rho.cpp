@@ -1,3 +1,5 @@
+// O(sqrt(N) * logN)
+
 ll a[MAX];
 
 ll mul(ll a, ll b, ll m){
