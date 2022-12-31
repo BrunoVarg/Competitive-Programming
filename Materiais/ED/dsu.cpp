@@ -29,7 +29,7 @@ class DSU{
     }
     
     bool same(int a, int b){
-        int a = find(a), b = find(b);
+        a = find(a), b = find(b);
         return a == b;
     }
     
