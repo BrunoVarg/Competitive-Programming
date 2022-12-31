@@ -16,6 +16,7 @@ using namespace std;
 #define TETO(a, b) ((a) + (b-1))/(b)
 #define loop(i,a,n) for(int i=a; i < n; i++)
 typedef long long ll;
+typedef long double ld;
 typedef vector<int> vi;
 typedef pair<int,int> pii;
 typedef priority_queue<int, vector<int>, greater<int>> pqi;
