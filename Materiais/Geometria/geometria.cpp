@@ -1,9 +1,10 @@
 const long double EPS = 1e-9;
 typedef long double ld;
 
+// point p(x, y);
 struct point {
-	ld x, y;
-	int id;
+    ld x, y;
+    int id;
     point(ld x=0, ld y=0): x(x), y(y){}
  
     point operator+(const point &o) const{ return {x+o.x, y+o.y}; }
@@ -14,6 +15,7 @@ struct point {
     ld operator^(const point &o) const{ return x * o.y - y * o.x; }
 };
 
+// line l(point(x1, y1), point(x2, y2));
 struct line{
     point a, b;
     line(){}
@@ -37,20 +39,20 @@ bool isinseg(point p, line l){
 
 // se o seg de r intersecta o seg de s
 bool interseg(line r, line s) { 
-	if (isinseg(r.a, s) or isinseg(r.b, s)
-		or isinseg(s.a, r) or isinseg(s.b, r)) return true;
+    if (isinseg(r.a, s) or isinseg(r.b, s)
+        or isinseg(s.a, r) or isinseg(s.b, r)) return true;
 
-	return (ccw(r, s.a)>0) != (ccw(r, s.b)>0) and
-			(ccw(s, r.a)>0) != (ccw(s, r.b)>0);
+    return (ccw(r, s.a)>0) != (ccw(r, s.b)>0) and
+        (ccw(s, r.a)>0) != (ccw(s, r.b)>0);
 }
 
 // area do poligono
 ld area_polygon(vector<point> vp){
     ld area = 0;
-	for(int i=1; i<vp.size()-1; i++){
-	    area += (vp[0]-vp[i]) ^ (vp[0]-vp[i+1]);
-	}
-	return (abs(area)/2);
+    for(int i=1; i<vp.size()-1; i++){
+        area += (vp[0]-vp[i]) ^ (vp[0]-vp[i+1]);
+    }
+    return (abs(area)/2);
 }
 
 // localizacao do ponto no poligono
