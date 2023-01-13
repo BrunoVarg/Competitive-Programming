@@ -1,6 +1,8 @@
+// Longest increase sequence
+// O(nlogn)
 multiset<int> S;
 for(int i=0;i<n;i++){
-    auto it = S.upper_bound(vet[i]); // low for inc
+    auto it = S.upper_bound(vet[i]); // upper - longest strictly increase sequence
     if(it != S.end())
         S.erase(it);
     S.insert(vet[i]);

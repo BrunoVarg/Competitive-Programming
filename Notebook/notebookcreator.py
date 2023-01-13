@@ -4,6 +4,9 @@ import os
 import subprocess
 import shutil
 
+name = 'Materiais'
+path_notebook = os.path.join((os.path.dirname(os.path.dirname(__file__))), name)
+
 def cpy_template():
     shutil.copyfile('template.tex', 'notebook.tex')
 
@@ -34,12 +37,12 @@ def remove_aux():
 
 
 def get_dir():
-    path = 'Materiais'
-    section_list = os.listdir(path)
+
+    section_list = os.listdir(path_notebook)
     section = []
     for section_name in section_list:
         subsection = []
-        section_path = os.path.join(path, section_name)
+        section_path = os.path.join(path_notebook, section_name)
         items = os.listdir(section_path)
         for file_name in items:
             if file_name.endswith('.cpp'):
@@ -57,7 +60,6 @@ def get_dir():
 
 
 def create_notebook(section, blocked):
-    path = 'Materiais'
     aux = ''
     with open('notebook.tex', 'a') as texfile:
 
@@ -70,7 +72,7 @@ def create_notebook(section, blocked):
                 name, ext = os.path.splitext(file)
                 name = os.path.split(name)[1]  # Remove Segtree/ prefix
                 file_name = " ".join([x.capitalize() for x in name.split("_")])
-                file_path = os.path.join(path, item, file).replace('\\','/')
+                file_path = os.path.join(path_notebook, item, file).replace('\\','/')
 
                 aux += '\\includes{%s}{%s}\n' % \
                     (file_name, file_path)

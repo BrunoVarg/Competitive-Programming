@@ -25,3 +25,5 @@ void possibleSubsets(char S[], int N) {
     }
 }
 
+// x & (~x+1)  -> first set bit 
+
