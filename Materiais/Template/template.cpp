@@ -1,20 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-//alias comp='g++ -std=c++17 -g -O2 -Wall -fsanitize=address -o out'
+//alias comp='g++ -std=c++17 -g -O2 -Wall -Wconversion -Wshadow -fsanitize=address,undefined -fno-sanitize-recover -ggdb -o out'
 
+#define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define int long long
 #define endl "\n"
-#define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-#define all(x) x.begin(), x.end()
+#define loop(i,a,n) for(int i=a; i < n; i++)
 #define input(x) for (auto &it : x) cin >> it
-#define print(x,y) loop(i,0,y){cout << x[i] << " ";} cout << "\n";
-#define dbg(msg, x) cout << msg << " = " << x << endl
 #define pb push_back
-#define mp make_pair
+#define all(x) x.begin(), x.end()
 #define ff first
 #define ss second
+#define mp make_pair
 #define TETO(a, b) ((a) + (b-1))/(b)
-#define loop(i,a,n) for(int i=a; i < n; i++)
+#define dbg(msg, x) cout << msg << " = " << x << endl
+#define print(x,y) loop(i,0,y){cout << x[i] << " ";} cout << "\n";
+
 typedef long long ll;
 typedef long double ld;
 typedef vector<int> vi;
