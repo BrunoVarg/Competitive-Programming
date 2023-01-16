@@ -1,82 +1,70 @@
-/*
-Busca uma arvore geradora minima para um grafo conexo com pesos.
-*/
+// Arvore geradora minima
+// O(MlogN)
 
-#include <iostream>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-struct t_aresta{
-    int dis;
-    int x, y;
+int n;
+class DSU{
+    vector<int> parent, sz;
+    public:
+    void make(int v){
+        parent[v] = v;
+        sz[v] = 1;
+    }
+
+    int find(int v){
+        if (v == parent[v]) return v;
+        return parent[v] = find(parent[v]);
+    }
+
+    void union_(int a, int b){
+        a = find(a), b = find(b);
+
+        if(sz[b]>sz[a]) swap(a,b);
+        if (a != b){
+            sz[a] += sz[b];
+            parent[b] = a;
+        }
+    }
+    
+    bool same(int a, int b){
+        a = find(a), b = find(b);
+        return a == b;
+    }
+    
+    DSU(int n): parent(n+1), sz(n+1){
+        for(int i=1; i<=n; i++) make(i);
+    }
 };
 
-bool comp(t_aresta a, t_aresta b){ return a.dis < b.dis; }
-
-//--------------------
-#define MAXN 50500
-#define MAXM 200200
-
-int n, m; // numero de vertices e arestas
-t_aresta aresta[MAXM];
-
-// para o union find
-int pai[MAXN];
-int peso[MAXN];
-
-// a arvore
-t_aresta mst[MAXM];
-//--------------------
-
-// funcoes do union find
-int find(int x){
-    if(pai[x] == x) return x;
-    return pai[x] = find(pai[x]);
-}
-
-void join(int a, int b){
-    
-    a = find(a);
-    b = find(b);
-    
-    if(peso[a] < peso[b]) pai[a] = b;
-    else if(peso[b] < peso[a]) pai[b] = a;
-    else{
-        pai[a] = b;
-        peso[b]++;
-    }
-    
-}
-
-
-int main(){
-    
-    // ler a entrada
-    cin >> n >> m;
-    
-    for(int i = 1;i <= m;i++)
-        cin >> aresta[i].x >> aresta[i].y >> aresta[i].dis;
-    
-    
-    // inicializar os pais para o union-find
-    for(int i = 1;i <= n;i++) pai[i] = i;
-    
-    // ordenar as arestas
-    sort(aresta+1, aresta+m+1, comp);
-    
-    int size = 0;
-    for(int i = 1;i <= m;i++){
-        
-        if( find(aresta[i].x) != find(aresta[i].y) ){ // se estiverem em componentes distintas
-            join(aresta[i].x, aresta[i].y);
-            
-            mst[++size] = aresta[i];
+// {a, b, weight}
+vector<tuple<int,int,int>> MST(vector<tuple<int,int,int>> &v){
+    DSU dsu(n);
+    sort(v.begin(), v.end());
+    vector<tuple<int,int,int>> ans;
+    for(int i=0; i<v.size(); i++){
+        int w, a, b;
+        tie(w, a, b) = v[i];
+        if(!dsu.same(a, b)){
+            dsu.union_(a, b);
+            ans.push_back({a, b, w});
         }
-        
     }
-    
-    // imprimir a MST
-    for(int i = 1;i < n;i++) cout << mst[i].x << " " << mst[i].y << " " << mst[i].dis << "\n";
+    return ans;
+}
+
+int32_t main(){
+    int m;
+    cin>>n>>m;
+    DSU dsu(n);
+    vector<tuple<int,int,int>> vt;
+    for(int i=0; i<m; i++){
+        int a, b, w;
+        cin>>a>>b>>w;
+        // {weight, a, b}
+        vt.push_back({w, a, b});
+    }
+    vector<tuple<int,int,int>> ans = MST(vt); 
     return 0;
 }
