@@ -18,8 +18,7 @@ class DSU{
     }
 
     void union_(int a, int b){
-        a = find(a);
-        b = find(b);
+        a = find(a), b = find(b);
 
         if(sz[b]>sz[a]) swap(a,b);
         if (a != b){
