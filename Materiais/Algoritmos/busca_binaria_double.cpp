@@ -5,12 +5,10 @@
 using namespace std;
 
 typedef long long ll;
-const int MAX = 1e5+1;
-const double EPS = 0.0000001;
+typedef long double ld;
+const ld EPS = 1e-9;
 
-vector<int> v(100001);
-int n;
-ll check(double x){
+ll check(ld x, vector<int> &v){
     ll sum = 0;
     for(int i=0; i<n; i++){
         sum += (v[i]/x);
@@ -19,16 +17,16 @@ ll check(double x){
 }
 
 int main(){
-    int k;
+    int n, k;
     cin>>n>>k;
-	
+    vector<int> v(n);
     for(int i=0; i<n; i++)cin>>v[i];
 
-    double l=0.0000000, r=10000000.0000000;
-    double mid;
+    ld l=0.0000000, r=10000000.0000000;
+    ld mid;
     while(r-l>EPS){
-        mid = (double)((l + r)/2);
-        if (check(mid)>=k){
+        mid = (ld)((l + r)/2);
+        if (check(mid, v)>=k){
             l=mid;
         }
         else{
