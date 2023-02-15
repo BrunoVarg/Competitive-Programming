@@ -1,5 +1,5 @@
 // Acha o menor caminho de um ponto inicial para todos os outros
-// Complexidade: O(NlogN)
+// Complexidade: O(|V|+|E|*log|V|)
 
 #include <bits/stdc++.h>
 using namespace std;
