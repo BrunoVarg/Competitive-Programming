@@ -6,7 +6,7 @@ int fast_exp(int base, int e, int m){
     else return ans;
 }
 //iterativo
-int fast_exp(int base, int e, int m) { // iterativo
+int fast_exp(int base, int e, int m) {
 	int ret = 1;
 	while (e) {
 		if (e & 1) ret = (ret * base) % m;
