@@ -1,4 +1,4 @@
-// Arvore geradora minima
+// Arvore geradora minima (arvore conexa com peso minimo)
 // O(MlogN)
 
 #include <bits/stdc++.h>
