@@ -14,7 +14,7 @@ class SCC{
     // componente do vertice
     vector<int> comp;
     
-    void inp(int x, int y) {
+    void add(int x, int y) {
         adj[x].pb(y), radj[y].pb(x);
     }
     void dfs(int u){
@@ -50,7 +50,7 @@ int32_t main(){ sws;
     for(int i=0; i<m; i++){
         int a, b;
         cin>>a>>b;
-        scc.inp(a, b);
+        scc.add(a, b);
     }
     int comp=0;
     vector<int> ans(n+1);
