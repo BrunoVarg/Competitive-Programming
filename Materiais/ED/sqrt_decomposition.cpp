@@ -1,3 +1,6 @@
+// Acha o elemento minimo do segmento de l a r
+// O(N/K + K), onde K = raiz(N)
+
 class SQRT{
     vector<int> a, b;
     int n, k;
