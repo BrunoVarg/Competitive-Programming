@@ -1,3 +1,6 @@
+// adiciona elementos em um multiset, e calcula o numero de elementos menor que x no set
+// O(raiz(QlogQ))
+
 class Delayed{
     ll q;
     vector<ll> a, delayed;
