@@ -1,32 +1,38 @@
+// Contar uma certa ocorrencia em queries de L a R
+// O(N²/K + K*Q), onde K = raiz(N)
+
+// Problema: quantos numeros x existem tal que 
+// x ocorre exatamente x vezes no subarray
+
 int block;
 bool comp(tuple<int,int,int> a, tuple<int,int,int> b){
     int l, r, idx, ll, rr, idx2;
     tie(l, r, idx) = a;
     tie(ll, rr, idx2) = b;
-
+ 
     if(l/block != ll/block){
         return l/block < ll/block;
     }
     return (l/block & 1) ? r < rr : r > rr;
 }
-
+ 
 class MO{
     public:
     vector<int> a;
     int ans = 0;
-    vector<int> cnt(1e6+5);
+    unordered_map<int, int> cnt;
     vector<tuple<int,int,int>> queries;
     
     void add(int x){
-        ans -= (cnt[x]*cnt[x])*x;
+        if(cnt[x] == x) ans--;
         cnt[x]++;
-        ans += (cnt[x]*cnt[x])*x;
+        if(cnt[x] == x) ans++;
     }
-
+ 
     void del(int x){
-        ans -= (cnt[x]*cnt[x])*x;
+        if(cnt[x] == x) ans--;
         cnt[x]--;
-        ans += (cnt[x]*cnt[x])*x;
+        if(cnt[x] == x) ans++;
     }
     vector<int> get(){
         vector<int> qans(queries.size());
@@ -46,15 +52,15 @@ class MO{
     MO(vector<int> a, vector<tuple<int,int,int>> queries){
         this->a = a;
         this->queries = queries;
-        block = sqrt((int)a.size());
+        block = (int)sqrt((int)a.size());
     }
 };
-
+ 
 int32_t main(){ sws; 
     int n, m;
     cin>>n>>m;
     vector<int> a(n);
-    for(int i=0; i<n; i++) cin>>a[i];
+    for(int i=0; i<n; i++)cin>>a[i];
     vector<tuple<int,int,int>> queries;
     for(int i=0; i<m; i++){
         int l, r;
