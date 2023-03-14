@@ -1,5 +1,5 @@
 // Contar uma certa ocorrencia em queries de L a R
-// O(N²/K + K*Q), onde K = raiz(N)
+// O(K*(N+Q)), onde K = raiz(N)
 
 // Problema: quantos numeros x existem tal que 
 // x ocorre exatamente x vezes no subarray
