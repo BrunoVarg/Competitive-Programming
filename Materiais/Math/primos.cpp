@@ -15,6 +15,21 @@ void crivo(){
         }
     }
 }
+bool isPrime[MAX];
+vector<int> generate_primes() {
+    vector<int> primes;
+    isPrime[1]=isPrime[0]=1;
+    for(int i=2; i<MAX; i++){
+        if(!isPrime[i]){
+            primes.pb(i);
+            for(int j=i+i; j<MAX; j+=i){
+                isPrime[j]=1;
+            }
+        }
+    }
+    return primes;
+}
+ 
 
 bool is_prime(int num){
     for(int i = 2; i*i<= num; i++) {

@@ -5,16 +5,14 @@ using namespace std;
 #define sws std::ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 #define int long long
 #define endl "\n"
-#define loop(i,a,n) for(int i=a; i < n; i++)
 #define input(x) for (auto &it : x) cin >> it
 #define pb push_back
 #define all(x) x.begin(), x.end()
 #define ff first
 #define ss second
-#define mp make_pair
 #define TETO(a, b) ((a) + (b-1))/(b)
 #define dbg(msg, x) cout << msg << " = " << x << endl
-#define print(x,y) loop(i,0,y){cout << x[i] << " ";} cout << "\n";
+#define print(x,y) for (auto &it : x) cout << it
 
 typedef long long ll;
 typedef long double ld;
@@ -26,7 +24,6 @@ const ll MOD = 1e9+7;
 const int MAX = 1e4+5;
 const ll LLINF = 0x3f3f3f3f3f3f3f3f;
 const double PI = acos(-1);
-
 
 int32_t main(){ sws; 
     
