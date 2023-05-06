@@ -1,0 +1,2 @@
+asenˆA=bsenˆB=csenˆC, em que a, b e c são os lados de um triângulo e ˆA, ˆB e ˆC são os ângulos opostos, respectivamente.
+ a² = b² + c² - 2bc cosÂ
