@@ -88,3 +88,19 @@ V = (1/3) * PI * R^2 * H
 
 //condicao de existencia
  a - b | < c < a + b
+
+// combinacao sem rep.
+C(n  x) = n! / (x! (n-x)!)
+
+// combinacao com rep.
+C(n  m) = (m + n - 1)!/(n! (m-1)!)
+
+// perm sem rep
+ p = n!
+
+// perm com rep
+p = n!/(rep1! rep2! ... repn!)
+
+// perm circ
+ P = (n-1)!
+ 
