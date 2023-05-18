@@ -67,6 +67,19 @@ struct hash_string{
         }
         return get_hashes;
     }
+
+    vector<int> update(int idx, int c){
+        vector<int> get_hashes;
+        for(int i=0; i<mods.size(); i++){
+            int h = hashes[i][n-1];
+            int m = mul((int)s[idx], power[i][idx], mods[i]);
+            h = sub(h, m, mods[i]);
+            m = mul(c, power[i][idx], mods[i]);
+            h = add(h, m, mods[i]);
+            get_hashes.pb(h);
+        }
+        return get_hashes;
+    }
 };
 
 int32_t main(){ sws;
