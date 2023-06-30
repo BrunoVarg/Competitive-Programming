@@ -20,7 +20,7 @@ int main(){
         }
     }
 
-    for(int i=0; i<n +1; i++){
+    for(int i=0; i<n+1; i++){
         dist[i][i]=0;
     }
 
@@ -28,7 +28,7 @@ int main(){
         int comeca, termina, custo;
         cin>>comeca>>termina>>custo;
 
-            // grafo direcionado
+        // grafo direcionado
         dist[comeca][termina] = custo;
     }
 
