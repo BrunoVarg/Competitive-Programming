@@ -6,7 +6,7 @@
 class SCC{
     int N;
     public:
-    vector<int> adj[MAX], radj[MAX];
+    vector<vector<int>> adj, radj;
     stack<int> st;
     vector<bool> visited;
     // todas as componentes
@@ -27,7 +27,7 @@ class SCC{
         for(auto v: radj[u]) if(comp[v] == -1) dfs2(v, c);
     }
     void gen() {
-        for(int i=1; i<=N; i++) if(!visited[i]) dfs(i);
+        for(int i=1; i<N; i++) if(!visited[i]) dfs(i);
         while(!st.empty()){
             int u = st.top(); st.pop();
             if(comp[u] == -1){
@@ -40,6 +40,8 @@ class SCC{
         N = n+1;
         comp.assign(N, -1);
         visited.assign(N, false);
+        adj.assign(N, vector<int>());
+        radj.assign(N, vector<int>());
     }
 };
 
