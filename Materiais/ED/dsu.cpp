@@ -5,8 +5,8 @@ using namespace std;
 // build : O(N)
 // find : O(logN)
 class DSU{
-    vector<int> parent, sz;
     public:
+    vector<int> parent, sz;
     void make(int v){
         parent[v] = v;
         sz[v] = 1;
