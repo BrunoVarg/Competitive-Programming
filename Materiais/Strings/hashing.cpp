@@ -1,84 +1,60 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 int add(int a, int b, int mod) {
   return (a+b)%mod;
 }
- 
+
 int sub(int a, int b, int mod) {
-  return ((a-b)%mod + mod)%mod;
+  return (a-b+mod)%mod;
 }
  
 int mul(int a, int b, int mod) {
   return (a*b)%mod;
 }
 
-int fexp(int b, int e, int mod) {
-  if(e == 0) return 1;
-  int x = fexp(b, e/2, mod);
-  x = mul(x, x, mod);
-  if(e%2) x = mul(x, b, mod);
-
-  return x;
-}
-
-const vector<int> mods = {
-        1000015187, 1000027957//, 1000041323
-};
+const int mod1 = 1000015187;
+const int mod2 = 1000027957;
 mt19937 rng((int) chrono::steady_clock::now().time_since_epoch().count()); // random number
-const ll base = uniform_int_distribution<int>(356, mods[0]-1)(rng); // alphabet < base < mod1
- 
+//const int base = uniform_int_distribution<int>(356, mod1-1)(rng); // alphabet < base < mod1
+const int base = 31;
+
+// use base = 31 to query inv
 struct hash_string{
     string s;
-    ll n;
-    vector<vector<int>> hashes, power, inv;
+    int n;
+    vector<int> h1, p1, h2, p2;
+    vector<int> hi1, hi2; // inverse, just if necessary
 
-    hash_string(): n(0){}
-    hash_string(string _s)
-        : n(_s.size()), s(_s), 
-        hashes(mods.size(),vector<int>(n)), 
-        power(mods.size(),vector<int>(n)),
-        inv(mods.size(),vector<int>(n))
-        {
-        for(int i=0; i<mods.size(); i++){
-            power[i][0] = 1, inv[i][0] = 1;
-            for(int j=1; j<n; j++){
-                power[i][j] = mul(power[i][j-1], base, mods[i]);
-            }
-            inv[i][n-1] = fexp(power[i][n-1], mods[i]-2, mods[i]);
-            for(int j=n-2; j>=0; j--){
-                inv[i][j] = mul(inv[i][j+1], base, mods[i]);
-            }
-            hashes[i][0] = s[0];
-            for(int j=1; j<n; j++){
-                hashes[i][j] = add(hashes[i][j-1], mul(power[i][j], (int)(s[j]), mods[i]), mods[i]);
-            }
+    hash_string(){}
+    hash_string(string _s): n(_s.size()), s(_s), h1(n), p1(n), h2(n), p2(n), hi1(n), hi2(n) {
+        p1[0] = p2[0] = 1;
+        for(int i=1; i<n; i++){
+            p1[i] = mul(base, p1[i-1], mod1);
+            p2[i] = mul(base, p2[i-1], mod2);
+        }
+        h1[0] = h2[0] = (int)s[0];
+        for(int i=1; i<n; i++){
+            h1[i] = add(mul(base, h1[i-1], mod1), (int)(s[i]), mod1);
+            h2[i] = add(mul(base, h2[i-1], mod2), (int)(s[i]), mod2);
+        }
+        // inverse, just if necessary
+        hi1[n-1] = hi2[n-1] = (int)s[n-1];
+        for(int i=n-2; i>=0; i--){
+            hi1[i] = add(mul(base, hi1[i+1], mod1), (int)(s[i]), mod1);
+            hi2[i] = add(mul(base, hi2[i+1], mod2), (int)(s[i]), mod2);
         }
     }
-    // return vector of hashes [l, r]
-    vector<int> query(int l, int r){
-        vector<int> get_hashes;
-        for(int i=0; i<mods.size(); i++){
-            // hashes[r] - hashes[l-1]
-            int res = hashes[i][r];
-            if(l > 0) res = sub(res, hashes[i][l-1], mods[i]);
-            res = mul(res, inv[i][l], mods[i]);
-            get_hashes.pb(res);
-        }
-        return get_hashes;
+    // return integer of 2 hashes [l, r]
+    pair<int,int> query(int l, int r){
+        if(l == 0) return {h1[r], h2[r]};
+        int ret1 = sub(h1[r], mul(h1[l-1], p1[r-l+1], mod1), mod1);
+        int ret2 = sub(h2[r], mul(h2[l-1], p2[r-l+1], mod2), mod2);
+        return {ret1, ret2};
     }
-
-    vector<int> update(int idx, int c){
-        vector<int> get_hashes;
-        for(int i=0; i<mods.size(); i++){
-            int h = hashes[i][n-1];
-            int m = mul((int)s[idx], power[i][idx], mods[i]);
-            h = sub(h, m, mods[i]);
-            m = mul(c, power[i][idx], mods[i]);
-            h = add(h, m, mods[i]);
-            get_hashes.pb(h);
-        }
-        return get_hashes;
+    // return inverse integer of 2 hashes [l, r]
+    pair<int,int> query_inv(int l, int r){
+        if(r == n-1) return {hi1[l], hi2[l]};
+        int ret1 = sub(hi1[l], mul(hi1[r+1], p1[r-l+1], mod1), mod1);
+        int ret2 = sub(hi2[l], mul(hi2[r+1], p2[r-l+1], mod2), mod2);
+        return {ret1, ret2};
     }
 };
 
