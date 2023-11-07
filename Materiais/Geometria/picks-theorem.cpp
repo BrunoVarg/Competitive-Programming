@@ -40,8 +40,9 @@ int boundary(vector<point> &v){
 int32_t main(){ sws;
     // area = points + bound/2 -1
     // points = area - bound/2 + 1
+    int n; cin>>n;
     vector<point> v;
-    for(int i=0; i<3; i++){
+    for(int i=0; i<n; i++){
         int x, y; cin>>x>>y;
         v.push_back(point(x, y));
     }
