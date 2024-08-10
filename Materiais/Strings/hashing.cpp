@@ -44,3 +44,45 @@ struct HS {
         return query(n - b - 1, n - a - 1, true);
     }
 };
+
+
+// ########################
+// # Múltiplos MODS:
+// # Aumenta a complexidade!!
+// ########################
+const int base = 31;
+// pode adicionar mais mods
+vector<int> mods = {1000015187, 1000027957, 1000041323};
+struct HS {
+    vector<int> s, t;
+    int n, m;
+    vector<vector<int>> h, hi, p;
+    template<typename T>
+    HS(T x) : n(x.size()), m(mods.size()), 
+                    s(x.begin(), x.end()), t(x.rbegin(), x.rend()), 
+                    h(m, vector<int>(n)), hi(m, vector<int>(n)), p(m, vector<int>(n)) {
+        for (auto& it : s) it += 1;
+        for (auto& it : t) it += 1;
+        for (int i = 0; i < m; ++i) {
+            p[i][0] = 1;
+            h[i][0] = s[0];
+            hi[i][0] = t[0];
+            for (int j = 1; j < n; ++j) {
+                p[i][j] = mul(base, p[i][j-1], mods[i]);
+                h[i][j] = add(mul(base, h[i][j-1], mods[i]), s[j], mods[i]);
+                hi[i][j] = add(mul(base, hi[i][j-1], mods[i]), t[j], mods[i]);
+            }
+        }
+    }
+    vector<int> query(int l, int r, bool inv = false) const {
+        vector<int> result(m);
+        for (int i = 0; i < m; ++i) {
+            const auto& hs = inv ? hi[i] : h[i];
+            result[i] = (l == 0) ? hs[r] : sub(hs[r], mul(hs[l-1], p[i][r-l+1], mods[i]), mods[i]);
+        }
+        return result;
+    }
+    vector<int> query_inv(int a, int b) const {
+        return query(n - b - 1, n - a - 1, true);
+    }
+};
