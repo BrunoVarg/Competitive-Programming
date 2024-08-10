@@ -14,6 +14,7 @@ struct HS {
     template<typename T>
     HS(T x) : n(x.size()), s(x.begin(), x.end()), t(x.rbegin(), x.rend()),
                h1(n), h2(n), hi1(n), hi2(n), p1(n), p2(n) {
+        // evita ter 0 no vetor
         for (auto& it : s) it += 1;
         for (auto& it : t) it += 1;
         p1[0] = p2[0] = 1;
